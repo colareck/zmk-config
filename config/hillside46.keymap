@@ -11,9 +11,9 @@
 #include <dt-bindings/zmk/outputs.h>
 
 #define QWERTY_L 0
-#define NAV_L    3
-#define SYM_L    4
-#define ADJ_L    5
+#define NUM      1
+#define SYM      2
+#define ADJ      3
 
 #define Undo   LC(Z)
 #define Cut    LC(X)
@@ -29,34 +29,34 @@
                 default_layer {
 /* QWERTY
  * -------------------------------------------------------------------------------------------------------------------------------------
- * | `     |   Q   |   W   |   E   |   R   |   T   |-----------------------------------|   Y   |   U   |   I   |   O   |   P   | BKSPC |
- * | TAB   |   A   |   S   |   D   |   F   |   G   |-----------------------------------|   H   |   J   |   K   |   L   |   ;   | ENTER |
- * | CTRL  |   Z   |   X   |   C   |   V   |   B   |  ESC  |-------------------|  CAPS |   N   |   M   |   ,   |   .   |   /   |   '   |
- *                                 |  GUI  |  ALT  |SK SHFT|  Nav  |---|  Sym  | SPACE |  ALT  |  GUI  |
+ * |  TAB  |   Q   |   W   |   E   |   R   |   T   |-----------------------------------|   Y   |   U   |   I   |   O   |   P   | BKSPC |
+ * |  CTRL |   A   |   S   |   D   |   F   |   G   |-----------------------------------|   H   |   J   |   K   |   L   |   ;   |  DEL  |
+ * |  SHFT |   Z   |   X   |   C   |   V   |   B   |  NUM  |-------------------| KNOB  |   N   |   M   |   ,   |   .   |   /   | ENTER |
+ *                                 |  ALT  |   OS  |  SYM  |  SPC  |---|  SPC  | RCTRL | HOME  |  END  |
  */
                         bindings = <
-&kp  GRAVE    &kp  Q        &kp  W        &kp  E        &kp  R        &kp  T                                                                         &kp  Y        &kp  U        &kp  I        &kp  O        &kp  P        &kp  BSPC
-&kp  TAB      &kp  A        &kp  S        &kp  D        &kp  F        &kp  G                                                                         &kp  H        &kp  J        &kp  K        &kp  L        &kp  SEMI     &kp  ENTER  
-&kp  LCTRL    &kp  Z        &kp  X        &kp  C        &kp  V        &kp  B        &kp  ESC                                           &caps_word    &kp  N        &kp  M        &kp  COMMA    &kp  DOT      &kp  SLASH    &kp  SQT
-                                                        &kp  LGUI     &kp  LALT     &sk  LSHIFT    &mo  NAV_L            &mo  SYM_L    &kp  SPACE    &kp  LALT     &kp  RGUI
+&kp  TAB         &kp  Q        &kp  W        &kp  E        &kp  R        &kp  T                                                                         &kp  Y        &kp  U        &kp  I        &kp  O        &kp  P        &kp  BSPC
+&kp  LCTRL       &kp  A        &kp  S        &kp  D        &kp  F        &kp  G                                                                         &kp  H        &kp  J        &kp  K        &kp  L        &kp  SEMI     &kp  DEL  
+&mt  LSHFT CAPS  &kp  Z        &kp  X        &kp  C        &kp  V        &kp  B        &tog  NUM                                          &caps_word    &kp  N        &kp  M        &kp  COMMA    &kp  DOT      &kp  SLASH    &kp  ENTER
+                                                        &kp  RALT     &kp  LGUI     &tog  SYM     &kp  SPACE                   &kp  SPACE    &kp  RCTRL    &kp  HOME     &kp  END
                         >;
 			
                         sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
                 };
 		
-                nav_layer {
-/* NAV   
+                num_layer {
+/* NUM   
  * -------------------------------------------------------------------------------------------------------------------------------------
- * | Copy  |   1   |   2   |   3   |   4   |   5   |-----------------------------------|   6   |   7   |   8   |   9   |   0   | BSPC  |
- * | Cut   |  GUI  |  Alt  | Ctrl  | Shift | Paste |-----------------------------------| PG UP |  Left |  Up   |  Down | Right | PG DN |
- * | Ctrl  |  F1   |  F2   |  F3   |  F4   |  F5   |  UnDo |-------------------| ReDo  |  F6   |  F7   |  F8   |  F9   |  F10  | Ctrl  |
- *                                 |       |       |       |       |---| ADJ_L |       |       |       |
+ * | ESC   |  F1   |   F2  |  F3   |  F4   |  F5   |-----------------------------------|   7   |   8   |   9   |   -   |   /   | BSPC  |
+ * | COPY  |  F6   |   F7  |  F8   |  F9   |  F10  |-----------------------------------|   4   |   5   |   6   |   +   |       | DEL   |
+ * | PASTE |  F11  |  F12  |  <-   |   ^   |  ->   |       |-------------------| Knob  |   1   |   2   |   3   | ENTER |       |       |
+ *                                 |       |   V   |       | SPACE |---| SPACE |       |   0   |   .   |
  */
                         bindings = <
-&kp  Copy     &kp  N1       &kp  N2       &kp  N3       &kp  N4       &kp  N5                                                                        &kp   N6      &kp   N7      &kp   N8      &kp   N9      &kp  N0       &trans
-&kp  Cut      &kp  LGUI     &kp  LALT     &kp  LCTRL    &kp  LSHFT    &kp  Paste                                                                     &kp   PG_UP   &kp  LEFT    &kp   UP      &kp   DOWN    &kp  RIGHT    &kp PG_DN
-&trans        &kp  F1       &kp  F2       &kp  F3       &kp  F4       &kp  F5       &kp Undo                                           &kp  Redo     &kp   F6      &kp  F7      &kp   F8      &kp   F9      &kp  F10      &kp RCTRL
-                                                        &trans        &trans        &trans        &trans                 &mo ADJ_L     &trans        &trans        &trans 
+&kp  ESC      &kp  F1       &kp  F2       &kp  F3       &kp  F4       &kp  F5                                                                        &kp  KP_N7    &kp  KP_N8    &kp  KP_N9    &kp  KP_MINUS  &kp  KP_SLASH   &kp BSPC
+&kp  K_COPY   &kp  F6       &kp  F7       &kp  F8       &kp  F9       &kp  F10                                                                       &kp  KP_N4    &kp  KP_N5    &kp  KP_N6    &kp  KP_PLUS   &trans          &kp DEL
+&kp  K_PASTE  &kp  F11      &kp  F12      &kp  LEFT     &kp  UP       &kp  RIGHT    &trans                                             &kp  Redo     &kp  KP_N1    &kp  KP_N2    &kp  KP_N3    &kp  RETURN    &trans          &trans
+                                                        &trans        &kp  DOWN     &trans        &kp SPACE              &kp SPACE     &trans        &kp  KP_N0    &kp  KP_DOT 
                         >;
 			
                         sensor-bindings = <&inc_dec_kp PG_UP PG_DN &inc_dec_kp C_VOL_UP C_VOL_DN>;
