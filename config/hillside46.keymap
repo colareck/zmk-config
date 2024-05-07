@@ -37,7 +37,7 @@
                         bindings = <
 &kp  TAB         &kp  Q        &kp  W        &kp  E        &kp  R        &kp  T                                                                         &kp  Y        &kp  U        &kp  I        &kp  O        &kp  P        &kp  BSPC
 &kp  LCTRL       &kp  A        &kp  S        &kp  D        &kp  F        &kp  G                                                                         &kp  H        &kp  J        &kp  K        &kp  L        &kp  SEMI     &kp  DEL  
-&mt  LSHFT CAPS  &kp  Z        &kp  X        &kp  C        &kp  V        &kp  B        &tog  NUM                                          &caps_word    &kp  N        &kp  M        &kp  COMMA    &kp  DOT      &kp  SLASH    &kp  ENTER
+&mt  LSHFT CAPS  &kp  Z        &kp  X        &kp  C        &kp  V        &kp  B        &tog  NUM                                          &none         &kp  N        &kp  M        &kp  COMMA    &kp  DOT      &kp  SLASH    &kp  ENTER
                                                         &kp  RALT     &kp  LGUI     &tog  SYM     &kp  SPACE                   &kp  SPACE    &kp  RCTRL    &kp  HOME     &kp  END
                         >;
 			
